@@ -65,7 +65,7 @@ function Edit_Profile() {
       <form onSubmit={handleSubmit}>
 
         <div className="flex overflow-hidden">
-          <div className="absolute right-0 top-0 w-4/5 h-full bg-blue-100 px-6 py-24 border border-gray-200 overflow-y-auto">
+          <div className="absolute right-0 top-0 w-4/5 h-full bg-gray-100 px-6 py-24 border border-gray-200 overflow-y-auto">
             <div className="h-full">
               <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
                 <div className="md:w-1/2 px-3 mb-6 md:mb-0">

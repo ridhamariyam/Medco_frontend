@@ -30,10 +30,7 @@ function Appointments() {
 
   const cancelAppointment = async (appointmentId) => {
     try {
-      // Make a DELETE request to cancel the appointment
       await axios.patch(`${baseUrl}/slot/cancel_appointment/${appointmentId}/`);
-      
-      // Update the UI by removing the canceled appointment from the state
       setDetails(details.filter(appointment => appointment.id !== appointmentId));
     } catch (error) {
       console.error('Error cancelling appointment', error);

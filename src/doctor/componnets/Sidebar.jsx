@@ -1,45 +1,85 @@
 
 import { Link } from "react-router-dom";
-import { GiStethoscope } from "react-icons/gi";
-import { LuPieChart } from "react-icons/lu";
-import { FaUserDoctor } from "react-icons/fa6";
-import { RiBuilding3Line } from "react-icons/ri";
+// import { GiStethoscope } from "react-icons/gi";
+// import { LuPieChart } from "react-icons/lu";
+// import { FaUserDoctor } from "react-icons/fa6";
+// import { RiBuilding3Line } from "react-icons/ri";
 import React, { useState, useEffect } from "react";
 import { SlCalender } from "react-icons/sl";  
-import { CiChat1 } from "react-icons/ci";
-
+// import { CiChat1 } from "react-icons/ci";
+import { CgProfile } from "react-icons/cg";
+import { LiaNotesMedicalSolid } from "react-icons/lia";
+// import { SlCalender } from "react-icons/sl";
+import { CiViewTable } from "react-icons/ci";
+import { BsCashCoin } from "react-icons/bs";
+import { RiChat1Line } from "react-icons/ri";
 
 
 import axios from "axios";
 import { baseUrl } from "../../const/urls";
 
 
-
 const Sidebar = () => {
+  // State for sidebar toggle and doctors list
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+ 
+
+  // Sidebar toggle function
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const [doctor, setDoctors] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`${baseUrl}/doctor/verified_doctors`)
-      .then((response) => {
-        setDoctors(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching doctors:", error);
-      });
-  }, []);
-
-  console.log("verified", doctor);
-
   return (
     <>
-    
-        <aside
+      <aside
+        id="logo-sidebar"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } bg-white border-r border-gray-200 sm:translate-x-0 `}
+        aria-label="Sidebar"
+      >
+        <div className="h-full px-3 pb-4 overflow-y-auto ">
+          <ul className="space-y-2 font-medium">
+            {/* Sidebar links */}
+            <SidebarLink to="/Profile" icon={<CgProfile size={20} />} text="Profile" />
+            <SidebarLink to="/ProfessionalDEtails" icon={<RiChat1Line size={20} />} text="Professional Details" />
+            <SidebarLink
+              to="/ProfessionalEdit"
+              icon={<LiaNotesMedicalSolid size={20} />}
+              text="Edit Profesional Details"
+            />
+            <SidebarLink to="/Manageslot" icon={<SlCalender size={20} />} text="Manage slot" />
+            
+            <SidebarLink to="/List_Appointement" icon={<SlCalender size={20} />} text="Appointements" />
+            <SidebarLink
+              to="/DoctorChat"
+              icon={<CiViewTable size={20} />}
+              text="Chat"
+            />
+            <SidebarLink to="/Payments" icon={<BsCashCoin size={20} />} text="Payments" />
+            <SidebarLink to="/createroom" icon={<BsCashCoin size={20} />} text="video call" />
+          </ul>
+        </div>
+      </aside>
+    </>
+  );
+};
+
+// Helper component for sidebar links
+const SidebarLink = ({ to, icon, text }) => (
+  <Link to={to}>
+    <li className="flex items-center p-5 text-gray-900 rounded-lg  hover:bg-gray-100 group">
+      {icon}
+      <span className="flex-1 ml-3 whitespace-nowrap">{text}</span>
+    </li>
+  </Link>
+);
+
+export default Sidebar;
+
+
+
+ {/* <aside
 
           id="logo-sidebar"
           className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
@@ -105,29 +145,12 @@ const Sidebar = () => {
                   to={"/Manageslot"}
                   className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group"
                 >
-                    {/* <img
-                      src="/image/table.png"
-                      alt=""
-                      className="w-5 h-5 bg-gray-10 mr-5 -ml-1"
-                    /> */}
+                 
                   Add Slot
                   <span className="flex-1 ml-3 whitespace-nowrap"></span>
                 </Link>
               </li>
-              <li>
-                <Link
-                  to={"/ListMySlots"}
-                  className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group"
-                >
-                    {/* <img
-                      src="/image/table.png"
-                      alt=""
-                      className="w-5 h-5 bg-gray-10 mr-5 -ml-1"
-                    /> */}
-                  My Slots
-                  <span className="flex-1 ml-3 whitespace-nowrap"></span>
-                </Link>
-              </li>
+             
               
                 </ul>
                 <Link
@@ -190,10 +213,4 @@ const Sidebar = () => {
               </li>
             </ul>
           </div>
-        </aside>
-
-    </>
-  );
-};
-
-export default Sidebar;
+        </aside> */}

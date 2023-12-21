@@ -6,6 +6,7 @@ import { baseUrl } from '../const/urls';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -26,6 +27,45 @@ function BookDoctor() {
   const [slots, setslot] = useState([]);
   const navigate = useNavigate();
   const {user} = useContext(AuthContext)
+
+
+  
+  useEffect(()=>{
+    const params = new URLSearchParams(window.location.search);
+    const is_success = params.get('is_success')
+    console.log(params, 'hhhhhhhhhhhhhh', is_success)
+    if (is_success == "true"){
+      addBookData(params)
+    }
+  },[])
+  const addBookData = async (params) =>{
+   
+    try {
+      const date= params.get('date')
+      const doctor=params.get('doctor')
+      const timeChoice= params.get('time')
+      const patient=user?.user_id
+      const mode=params.get('mode')
+      const response = await axios.get(`${baseUrl}/slot/BookSlot?date=${date}&&doctor=${doctor}&&time=${timeChoice}&&patient=${patient}&&mode=${mode}`, {
+        
+      });
+  
+      if (response.status === 201) {
+        availableSlots(selectedDate)
+        console.log('Slot booked successfully!');
+        setSuccessMessage('Slot booked successfully!');
+       
+      }
+       else {
+        console.log('Failed to book slot. Server response:', response);
+      }
+    } catch (error) {
+      console.error('Error in booking slot:', error);
+      if (error.response) {
+        console.error('Error response from server:', error.response.data);
+      }
+    }
+  }
 
   const getFormattedDate = (date) => {
     const inputDate = new Date(date);
@@ -132,41 +172,27 @@ function BookDoctor() {
   };
 
   const bookSlot = async () => {
-      const response = await axios.post(`${baseUrl}/payments/test-payment/`)
-      console.log(response)
-      if(response.data.url){
-        window.location.href = response.data.url
-      }
+    const currentUrl = window.location.href;
+    if (!user) {
+      navigate('/login', {state:currentUrl});
+      return;
+    }
     if (!selectedSlot || !selectedMode) {
       console.log('Please select a slot/mode before booking.');
       return;
     }
-    if (!user) {
-      navigate('/login');
-      return;
-    }
-  
-    try {
-      const response = await axios.post(`${baseUrl}/slot/BookSlot/`, {
-        date: selectedSlot.date,
-        doctor: selectedSlot.doctorr.id,
-        timeChoice: selectedSlot.time,
-        patient: user?.user_id,
-        mode:selectedMode,
-      });
-  
-      if (response.status === 201) {
-        console.log('Slot booked successfully!');
-        setSuccessMessage('Slot booked successfully!');
-      } else {
-        console.log('Failed to book slot. Server response:', response);
+      let price = doctor?.doctor?.fee
+      const response = await axios.post(`${baseUrl}/payments/test-payment?price=${price}&&id=${selectedSlot.doctorr.account.id}&&mode=${selectedMode}&&date=${selectedSlot.date}&&time=${selectedSlot.time}&&doctor=${selectedSlot.doctorr.id}`,)
+      console.log(response)
+      if(response.data.url){
+        
+        window.location.href = response.data.url
+        console.log('hihihihihi');
       }
-    } catch (error) {
-      console.error('Error in booking slot:', error);
-      if (error.response) {
-        console.error('Error response from server:', error.response.data);
-      }
-    }
+      
+      
+   
+    
   };
   
   useEffect(() => {

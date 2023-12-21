@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import AuthContext from '../AuthContext/Authcontext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
@@ -15,8 +15,14 @@ function Loginpage () {
     superuser,
     itsdoctor,
     userlogin,
+    getLocation,
     // role,
   }=useContext(AuthContext)
+  const location = useLocation();
+  useEffect(() =>{
+    console.log(location.state);
+    getLocation(location.state)
+  },[])
  
 return (
   <div className="flex justify-center items-center h-screen bg-cover bg-center" style={{ backgroundImage: "url('/image/bg.jpeg')" }}>
@@ -68,11 +74,11 @@ return (
                New User?
           </Link>
           <Link
-                to="/Signup_patient"
-                className="flex justify-end text-blue-500 text-mx underline"
-                style={{ fontSize: '14px' }}
-              >
-               Forgot password?
+            to="/Pass_reset" 
+            className="flex justify-end text-blue-500 text-mx underline"
+            style={{ fontSize: '14px' }}
+          >
+            Forgot password?
           </Link>
          
          

@@ -34,6 +34,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const [patient, setpatient] = useState(null);
+    const [location, setLocation] = useState(null);
 
    useEffect(() => {
     if (user && user.role === 'user'){
@@ -74,9 +75,7 @@ export const AuthProvider = ({ children }) => {
                 
                 
             });
-            console.log('Request Data:', { email, password });
-            console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",response)
-
+            
             if (response.status === 200) {
                 const decodedToken = jwtDecode(response.data.access);
 
@@ -97,7 +96,11 @@ export const AuthProvider = ({ children }) => {
 
                 } else if(userRole === 'user'){
                     console.log('User is a regular user');
-                    navigate('/');
+                    if(location){
+                        window.location.href = location
+                        getLocation(null)
+                    }else{
+                    navigate('/');}
                 }
                 else{
                     console.log('role else case')
@@ -105,8 +108,7 @@ export const AuthProvider = ({ children }) => {
                 }
 
             } else {
-                // Handle other HTTP statuses gracefully
-                
+               
                 Swal.fire({
                     title: 'Login Failed',
                     text: 'Invalid credentials or account blocked.',
@@ -124,6 +126,10 @@ export const AuthProvider = ({ children }) => {
             });
         }
     };
+
+    let getLocation = (location)=>{
+        setLocation(location)
+    }
 
     let logoutuser = () => {
         setauthToken(null);
@@ -149,6 +155,7 @@ export const AuthProvider = ({ children }) => {
         setsuperuser: setsuperuser,
         setuser: setuser,
         patient,
+        getLocation,
        
     };
 

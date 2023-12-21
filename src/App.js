@@ -30,7 +30,12 @@ import { Elements } from '@stripe/react-stripe-js';
 import DoctorChat from "./doctor/componnets/DoctorChat";
 import ListMySlots from "./doctor/ListMySlots";
 import Appointements from "./patient/Appointements";
-
+import Page404 from "./main/Page404";
+import Pass_reset from "./main/Reset/Pass_reset";
+import List_Appointement from "./doctor/List_Appointement";
+import Room from "./components/Room";
+import CreateRoom from "./doctor/CreateRoom";
+// List_Appointement
 
 
 
@@ -45,8 +50,13 @@ function App() {
             <Route path="/" element={<Homepage />} />
             {/* <Route path="call" element={</>} /> */}
             <Route path="login" element={<Loginpage />} />
+            <Route path="Pass_reset" element={<Pass_reset />} />
+           
             <Route path="Signup_patient" element={<Signuppage_user />} />
             <Route path="verify" element={<Otp />} />
+            <Route path="Page404" element={<Page404 />} />
+            <Route path="video/:RoomId" element={<Room />} />
+
 
             {/* patient url */}
             <Route path="About" element={<About />} />
@@ -69,6 +79,8 @@ function App() {
             <Route path="DoctorChat" element={<DoctorChat/>}/>
             <Route path="DoctorChat/:username" element={<DoctorChat/>}/>
             <Route path="ListMySlots" element={<ListMySlots/>}/>
+            <Route path="List_Appointement" element={<List_Appointement/>}/>
+            <Route path="createroom" element={<CreateRoom/>}/>
             
 
 
@@ -80,6 +92,7 @@ function App() {
             <Route path="Doctor_view/:id" element={<Doctor_view />}/>
             <Route path="Patientlist" element={<Patientlist />}/>
 
+            <Route path="*" element={<Page404 />} />    
             {/* payments */}
             <Route path="payment" element={
               <Elements stripe={stripePromise}>

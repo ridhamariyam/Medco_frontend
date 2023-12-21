@@ -61,7 +61,7 @@ function Profile() {
 
       <div className="flex flex-col overflow-hidden">
         <div className="flex overflow-hidden">
-          <div className="absolute right-0 top-0 w-4/5 h-full bg-blue-100 px-6 py-24   border border-gray-200 overflow-y-auto">
+          <div className="absolute right-0 top-0 w-4/5 h-full bg-gray-100 px-6 py-24   border border-gray-200 overflow-y-auto">
             <div className="h-full">
 
               <div className="border-b-2 block md:flex">
