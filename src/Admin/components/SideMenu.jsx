@@ -95,26 +95,7 @@ const SideMenu = () => {
                 
               </Link>
             </li>
-            <li>
-              <Link
-                to={"/admin_doctor"}
-                className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group"
-              >
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75group-hover:text-gray-900 "
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <RiBuilding3Line />
-                </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">
-                  Departments
-                </span>
-                
-              </Link>
-            </li>
+            
             <li>
               <Link
                 to={"/Patientlist"}

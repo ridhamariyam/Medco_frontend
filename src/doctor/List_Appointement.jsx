@@ -47,7 +47,7 @@ const List_Appointement = () => {
     try {
       if (newStatus === 'refund') {
         // If the new status is 'refund', make a request to initiate the refund
-        await axios.post(`${baseUrl}/payments/refund/${appointmentId}/`);
+        await axios.post(`${baseUrl}/payments/HandleRefund/${appointmentId}/`);
       } else {
         // If the new status is something else, update the status as usual
         await axios.put(`${baseUrl}/slot/updateStatus/${appointmentId}/`, { status: newStatus });

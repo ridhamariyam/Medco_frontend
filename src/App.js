@@ -35,7 +35,10 @@ import Pass_reset from "./main/Reset/Pass_reset";
 import List_Appointement from "./doctor/List_Appointement";
 import Room from "./components/Room";
 import CreateRoom from "./doctor/CreateRoom";
-// List_Appointement
+import Wallet from "./patient/Wallet";
+import WalletHistory from "./patient/WalletHistory";
+
+
 
 
 
@@ -64,6 +67,8 @@ function App() {
             <Route path="Chat/:username" element={<Chat  />} />
             <Route path="Chat" element={<Chat/>} />
             <Route path="Appointements" element={<Appointements />} />
+            <Route path="Wallet" element={<Wallet />} />
+            <Route path="WalletHistory" element={<WalletHistory />} />
             <Route path="BookDoctor/:id" element={<BookDoctor />} />
             
             

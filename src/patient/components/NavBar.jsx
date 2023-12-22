@@ -19,9 +19,8 @@ const NavBar = () => {
     setIsUserDropdownOpen(!isUserDropdownOpen);
   };
 
-  const user = true; // Replace with your actual user check logic
+  const user = true; 
   const logoutUser = () => {
-    // Implement your logout logic here
   };
 
   return (
@@ -121,22 +120,18 @@ const NavBar = () => {
             {/* Sidebar links */}
             <SidebarLink to="/About" icon={<CgProfile  size={20}/>} text="Profile" />
             <SidebarLink to="/Chat" icon={<RiChat1Line  size={20}/>} text="Chat" />
-            <SidebarLink
+            {/* <SidebarLink
               to="/MedicalRecords"
               icon={<LiaNotesMedicalSolid  size={20}/>}
               text="Medical Records"
-            />
+            /> */}
             <SidebarLink
               to="/Appointements"
               icon={<SlCalender size={20}/>}
               text="Appointment"
             />
-            <SidebarLink
-              to="/OnlineConsultations"
-              icon={<CiViewTable  size={20} />}
-              text="Wallet"
-            />
-            <SidebarLink to="/Payments" icon={<BsCashCoin  size={20}/>} text="Payments" />
+           
+            <SidebarLink to="/Wallet" icon={<BsCashCoin  size={20}/>} text="Payments" />
           </ul>
         </div>
       </aside>

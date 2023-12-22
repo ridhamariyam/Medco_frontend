@@ -17,9 +17,11 @@ function Appointments() {
 
   const listAppointments = async () => {
     try {
+      const formattedDate = selectedDate.toISOString().split('T')[0];
+      console.log('Formatted Date:', formattedDate); 
       const response = await axios.get(`${baseUrl}/slot/ListAppointement`, {
         params: {
-          date: selectedDate.toISOString(),
+          date: formattedDate,
         },
       });
       setDetails(response.data);
@@ -27,6 +29,7 @@ function Appointments() {
       console.error('Error fetching details', error);
     }
   };
+  
 
   const cancelAppointment = async (appointmentId) => {
     try {
@@ -37,7 +40,6 @@ function Appointments() {
     }
   };
   
-
   return (
     <div>
       <NavBar />
@@ -69,49 +71,50 @@ function Appointments() {
       </div>
       {selectedDate && details.length > 0 && (
         <div className="p-4 bg-white sm:ml-64 border">
-           <table className="w-full table-auto">
-      <thead>
-        <tr>
-          <th className="border px-4 py-2">Doctor</th>
-          <th className="border px-4 py-2">Booked Time</th>
-          <th className="border px-4 py-2">Booked Date</th>
-          <th className="border px-4 py-2">Consultation Mode</th>
-          <th className="border px-4 py-2">Status</th>
-          <th className="border px-4 py-2">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {details.map((appointment) => (
-          <tr key={appointment.id}>
-            <td className="border px-4 py-2">{appointment?.doctor?.account?.first_name}</td>
-            <td className="border px-4 py-2">{appointment.time}</td>
-            <td className="border px-4 py-2">{appointment.date}</td>
-            <td className="border px-4 py-2">{appointment.mode}call</td>
-            <td className="border px-4 py-2">
-              {appointment.status === "Canceled" ? (
-                <span className="text-red-500 font-bold">Canceled</span>
-              ) : (
-                appointment.status
-              )}
-            </td>
-            <td className="border px-4 py-2">
-              {appointment.status !== "Canceled" && (
-                <button
-                  onClick={() => cancelAppointment(appointment.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                >
-                  Cancel
-                </button>
-              )}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+          <table className="w-full table-auto">
+            <thead>
+              <tr>
+                <th className="border px-4 py-2">Doctor</th>
+                <th className="border px-4 py-2">Booked Time</th>
+                <th className="border px-4 py-2">Booked Date</th>
+                <th className="border px-4 py-2">Consultation Mode</th>
+                <th className="border px-4 py-2">Status</th>
+                <th className="border px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {details.map((appointment) => (
+                <tr key={appointment.id}>
+                  <td className="border px-4 py-2">{appointment?.doctor?.account?.first_name}</td>
+                  <td className="border px-4 py-2">{appointment.time}</td>
+                  <td className="border px-4 py-2">{appointment.date}</td>
+                  <td className="border px-4 py-2">{appointment.mode}call</td>
+                  <td className="border px-4 py-2">
+                    {appointment.status === "Canceled" ? (
+                      <span className="text-red-500 font-bold">Canceled</span>
+                    ) : (
+                      appointment.status
+                    )}
+                  </td>
+                  <td className="border px-4 py-2">
+                    {appointment.status === "Confirmed" && (
+                      <button
+                        onClick={() => cancelAppointment(appointment.id)}
+                        className="bg-red-500 text-white px-4 py-2 rounded"
+                      >
+                        Cancel
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
   );
 }
+
 
 export default Appointments;
