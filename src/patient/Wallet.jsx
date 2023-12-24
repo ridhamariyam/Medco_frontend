@@ -46,7 +46,7 @@ function Wallet() {
                     style={{ width: '30px', height: 'auto', marginRight: '10px' }}
                   />
                   <li className='text-gray-700 font-bold'>
-                    HealthCash Wallet Balance: {loading ? 'Loading...' : error ? 'Error' : `$${walletBalance}`}
+                    HealthCash Wallet Balance: {loading ? 'Loading...' : error ? '₹0' : `$${walletBalance}`}
                   </li>
                 </ul>
               </div>

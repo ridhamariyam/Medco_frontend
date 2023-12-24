@@ -37,6 +37,7 @@ import Room from "./components/Room";
 import CreateRoom from "./doctor/CreateRoom";
 import Wallet from "./patient/Wallet";
 import WalletHistory from "./patient/WalletHistory";
+import AdminAppo from "./Admin/AdminAppo";
 
 
 
@@ -91,7 +92,8 @@ function App() {
 
             {/* admin url */}
             <Route path="Admin_dashboard" element={<PrivateRoute><Admin_dashboard /></PrivateRoute>}/>
-            <Route path="admin_doctor" element={<Admin_doctor />}/>
+            <Route path="admin_doctor" element={<PrivateRoute><Admin_doctor /></PrivateRoute>}/>
+            <Route path="AdminAppo" element={<AdminAppo />}/>
             <Route path="Blockeddoctores" element={<Blockeddoctores />}/>
             <Route path="Verified_Doctors" element={<Verified_doctor />}/>
             <Route path="Doctor_view/:id" element={<Doctor_view />}/>

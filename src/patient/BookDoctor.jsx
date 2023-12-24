@@ -11,12 +11,14 @@ import { useHistory } from 'react-router-dom';
 
 
 
+
 function BookDoctor() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedSlot, setSelectedSlot] = useState(null); 
-  const [selectedMode, setSelectedMode] = useState(null); 
+  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [selectedMode, setSelectedMode] = useState(null);
   const [doctor, setDoctor] = useState({});
   const [nextDays, setNextDays] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [currentDayInfo, setCurrentDayInfo] = useState({
     day: '',
     date: 0,
@@ -24,39 +26,35 @@ function BookDoctor() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [formattedDate, setFormattedDate] = useState(new Date());
   const [successMessage, setSuccessMessage] = useState('');
-  const [slots, setslot] = useState([]);
+  const [slots, setSlots] = useState([]);
   const navigate = useNavigate();
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
-
-  
-  useEffect(()=>{
+  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const is_success = params.get('is_success')
-    console.log(params, 'hhhhhhhhhhhhhh', is_success)
-    if (is_success == "true"){
-      addBookData(params)
+    const is_success = params.get('is_success');
+    console.log(params, 'hhhhhhhhhhhhhh', is_success);
+    if (is_success === 'true') {
+      addBookData(params);
     }
-  },[])
-  const addBookData = async (params) =>{
-   
+  }, []);
+
+  const addBookData = async (params) => {
     try {
-      const date= params.get('date')
-      const doctor=params.get('doctor')
-      const timeChoice= params.get('time')
-      const patient=user?.user_id
-      const mode=params.get('mode')
-      const response = await axios.get(`${baseUrl}/slot/BookSlot?date=${date}&&doctor=${doctor}&&time=${timeChoice}&&patient=${patient}&&mode=${mode}`, {
-        
-      });
-  
+      setLoading(true); // Set loading to true before making the request
+
+      const date = params.get('date');
+      const doctor = params.get('doctor');
+      const timeChoice = params.get('time');
+      const patient = user?.user_id;
+      const mode = params.get('mode');
+      const response = await axios.get(`${baseUrl}/slot/BookSlot?date=${date}&&doctor=${doctor}&&time=${timeChoice}&&patient=${patient}&&mode=${mode}`);
+
       if (response.status === 201) {
-        availableSlots(selectedDate)
+        availableSlots(selectedDate);
         console.log('Slot booked successfully!');
         setSuccessMessage('Slot booked successfully!');
-       
-      }
-       else {
+      } else {
         console.log('Failed to book slot. Server response:', response);
       }
     } catch (error) {
@@ -64,8 +62,10 @@ function BookDoctor() {
       if (error.response) {
         console.error('Error response from server:', error.response.data);
       }
+    } finally {
+      setLoading(false); // Set loading to false after the request completes (either success or error)
     }
-  }
+  };
 
   const getFormattedDate = (date) => {
     const inputDate = new Date(date);
@@ -80,7 +80,7 @@ function BookDoctor() {
     console.log(formattedDate1, 'kjfskjbvksd');
     setFormattedDate(formattedDate1);
     return ()=>{
-      setslot([])
+      setSlots([])
     }
   }, [selectedDate]);
 
@@ -140,6 +140,8 @@ function BookDoctor() {
     
   }, [id]);
 
+  
+
 
   const availableSlots = async (selectedDate) => {
     let formData = new FormData();
@@ -150,10 +152,10 @@ function BookDoctor() {
       .then(response => {
         const availableSlot = response.data;
         console.log(availableSlot, 'sdbfjksdbfks');
-        setslot(availableSlot);
+        setSlots(availableSlot);
       })
       .catch(error => {
-        setslot([])
+        setSlots([])
         console.log(slots);
         console.error('Error fetching slot:', error);
       });
@@ -199,7 +201,9 @@ function BookDoctor() {
     console.log(selectedSlot, 'updated selectedSlot');
   }, [selectedSlot]);
   
-  
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
 
   return (

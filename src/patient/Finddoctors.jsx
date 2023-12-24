@@ -10,6 +10,7 @@ import Footer from "../main/footer";
 function Finddoctors() {
   const [searchTerm, setSearchTerm] = useState("");
   const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleSearch = async () => {
     try {
@@ -38,67 +39,76 @@ function Finddoctors() {
  
   return (
     <div>
+      {/* Header Component */}
       <Header />
 
-      {/* Header Section */}
-      <div className="w-full h-96 border-4 border-blue-100" style={{
-          backgroundImage: `url(/image/bg.jpeg)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-        }}>
-        <div className="flex justify-center items-center flex-col">
-          <h1 className="text-4xl font-bold" style={{ color: "#0e7490", marginBottom: "0.5rem", marginTop: "-0.5rem" }}>
-            CHOOSE YOUR DOCTOR
-          </h1>
-          <h1 className="text-1xl" style={{ color: "black", marginBottom: "0.5rem", marginTop: "-0.5rem" }}>
-            Search The Doctor By Name or Speciality
-          </h1>
-          <div className="flex justify-center items-center mt-4">
-            <input
-              type="text"
-              placeholder="Search by Name or Speciality"
-              className="border p-2 mr-2"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button className="bg-blue-500 text-white p-2" onClick={handleSearch}>
-              Search
-            </button>
+      {/* {loading ? (
+        <p>Loading...</p>
+      ) : ( */}
+        <>
+          {/* Header Section */}
+          <div className="w-full h-96 border-4 border-blue-100" style={{
+            backgroundImage: `url(/image/bg.jpeg)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+          }}>
+            <div className="flex justify-center items-center flex-col">
+              <h1 className="text-4xl font-bold" style={{ color: "#0e7490", marginBottom: "0.5rem", marginTop: "-0.5rem" }}>
+                CHOOSE YOUR DOCTOR
+              </h1>
+              <h1 className="text-1xl" style={{ color: "black", marginBottom: "0.5rem", marginTop: "-0.5rem" }}>
+                Search The Doctor By Name or Speciality
+              </h1>
+              <div className="flex justify-center items-center mt-4">
+                <input
+                  type="text"
+                  placeholder="Search by Name or Speciality"
+                  className="border p-2 mr-2"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button className="bg-blue-500 text-white p-2" onClick={handleSearch}>
+                  Search
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Doctors List Section */}
-      <div className="mt-4 px-4">
-        <div>
-          <h1 className="text-4xl " style={{ color: "#0e7490", marginBottom: "0.5rem", marginTop: "-0.5rem" }}>
-          {doctors.length} {doctors.length === 1 ? 'Doctor' : 'Doctors'} Available
-          </h1>
-          <h1  style={{ color: "#0e7490", marginBottom: "0.5rem", marginTop: "-0.5rem" }}>
-          Book appointments with minimum wait-time & verified doctor details
-          </h1>
-         
-        </div>
-        <br/>
+          {/* Doctors List Section */}
+          <div className="mt-4 px-4">
+            <div>
+              <h1 className="text-4xl " style={{ color: "#0e7490", marginBottom: "0.5rem", marginTop: "-0.5rem" }}>
+                {doctors.length} {doctors.length === 1 ? 'Doctor' : 'Doctors'} Available
+              </h1>
+              <h1 style={{ color: "#0e7490", marginBottom: "0.5rem", marginTop: "-0.5rem" }}>
+                Book appointments with minimum wait-time & verified doctor details
+              </h1>
+            </div>
+            <br />
 
-        {/* Doctors List */}
-        <div className=" w-3/4">
-          {doctors.map((doctor) => (
-            <DoctorCard key={doctor.id} doctor={doctor} />
-          ))}
-        </div>
-      </div>
-            <br/>
+            {/* Doctors Cards */}
+            <div className="w-3/4">
+              {doctors.map((doctor) => (
+                <DoctorCard key={doctor.id} doctor={doctor} />
+              ))}
+            </div>
+          </div>
+          <br />
+        </>
+      
+
+      {/* Footer Component */}
       <Footer />
     </div>
   );
 };
 
+// DoctorCard Component
 const DoctorCard = ({ doctor }) => (
   <div className="mb-4">
     <div className="bg-white p-8 flex items-center justify-between">

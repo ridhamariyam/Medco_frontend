@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { RiChat1Line } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
@@ -6,6 +6,8 @@ import { LiaNotesMedicalSolid } from "react-icons/lia";
 import { SlCalender } from "react-icons/sl";
 import { CiViewTable } from "react-icons/ci";
 import { BsCashCoin } from "react-icons/bs";
+import AuthContext from "../../AuthContext/Authcontext";
+
 
 const NavBar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -20,8 +22,10 @@ const NavBar = () => {
   };
 
   const user = true; 
-  const logoutUser = () => {
-  };
+  const {   
+    logoutuser,
+   
+  } = useContext(AuthContext);
 
   return (
     <>
@@ -89,7 +93,7 @@ const NavBar = () => {
                             </li>
                             <li>
                               <button
-                                onClick={logoutUser}
+                                onClick={logoutuser}
                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                               >
                                 Logout

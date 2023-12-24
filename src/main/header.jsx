@@ -29,7 +29,7 @@ const Header = () => {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 text-black ">
-      <li><Link >Consult Online</Link></li>
+      <li><Link to='/'>Consult Online</Link></li>
       <li><Link to='/Find_doctors'>Find Doctors</Link></li>
       <li><Link>Book Appointment</Link></li>
       <li tabIndex={0}>

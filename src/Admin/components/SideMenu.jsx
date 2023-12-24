@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiStethoscope } from "react-icons/gi";
 import { LuPieChart } from "react-icons/lu";
 import { FaUserDoctor } from "react-icons/fa6";
 import { RiBuilding3Line } from "react-icons/ri";
+
+
 
 const SideMenu = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -23,7 +25,7 @@ const SideMenu = () => {
       >
         <div className="h-full px-3 pb-4 overflow-y-auto bg-white ">
           <ul className="space-y-2 font-medium">
-            <li>
+            {/* <li>
               <Link
                 to={"/Admin_dashboard"}
                 className="flex items-center p-2 text-gray-900 rounded-lg  group"
@@ -40,10 +42,10 @@ const SideMenu = () => {
                 </svg>
                 <span className="ml-3">Dashboard</span>
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
-                to={"/admin/dashboard"}
+                to={"/AdminAppo"}
                 className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group"
               >
                 <svg
@@ -121,31 +123,7 @@ const SideMenu = () => {
                 
               </Link>
             </li>
-            <li>
-              <Link
-                to={"/admin/dashboard"}
-                className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group"
-              >
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75group-hover:text-gray-900 "
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                ></svg>
-                <img
-                  src="/image/payment.ico"
-                  alt=""
-                  className="w-7 h-7 bg-gray-10 mr-4 -ml-6"
-                />
-
-                <span className="flex-1 ml-3 whitespace-nowrap -ml-2">
-                  Payment
-                </span>
-
-                
-              </Link>
-            </li>
+            
           </ul>
         </div>
       </aside>

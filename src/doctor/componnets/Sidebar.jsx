@@ -13,6 +13,10 @@ import { LiaNotesMedicalSolid } from "react-icons/lia";
 import { CiViewTable } from "react-icons/ci";
 import { BsCashCoin } from "react-icons/bs";
 import { RiChat1Line } from "react-icons/ri";
+import { CiVideoOn } from "react-icons/ci";
+import { BsJournalBookmark } from "react-icons/bs";
+import { TbListDetails } from "react-icons/tb";
+import { GiStethoscope } from "react-icons/gi";
 
 
 import axios from "axios";
@@ -50,14 +54,14 @@ const Sidebar = () => {
             />
             <SidebarLink to="/Manageslot" icon={<SlCalender size={20} />} text="Manage slot" />
             
-            <SidebarLink to="/List_Appointement" icon={<SlCalender size={20} />} text="Appointements" />
+            <SidebarLink to="/List_Appointement" icon={<GiStethoscope size={20} />} text="Appointements" />
             <SidebarLink
               to="/DoctorChat"
               icon={<CiViewTable size={20} />}
               text="Chat"
             />
-            <SidebarLink to="/Payments" icon={<BsCashCoin size={20} />} text="Payments" />
-            <SidebarLink to="/createroom" icon={<BsCashCoin size={20} />} text="video call" />
+            {/* <SidebarLink to="/Payments" icon={<BsCashCoin size={20} />} text="Payments" /> */}
+            <SidebarLink to="/createroom" icon={<CiVideoOn  size={20} />} text="video call" />
           </ul>
         </div>
       </aside>
