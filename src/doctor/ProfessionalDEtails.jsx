@@ -56,71 +56,82 @@ function ProfessionalDetails() {
 
   // Render
   return (
-    <div>
-      {/* Navigation components */}
-      <Nav />
+    
+    
+    <div className="flex flex-col h-screen overflow-hidden">
+       <Nav />
       <Sidebar />
+      <div className="flex h-full overflow-hidden">
+      <div className="absolute right-0 top-10 w-4/5 h-3/4 bg-gray-100 px-6 py-12 border-l border-gray-200 overflow-y-auto">
+  <div className="h-full">
+    {/* Professional Details Form */}
+    <form className="bg-white p-8 rounded-md shadow-md">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6">
+        Professional Details
+      </h2>
 
-      {/* Main content */}
-      <div className="flex flex-col overflow-hidden">
-        <div className="flex overflow-hidden">
-          <div className="absolute right-0 top-0 w-4/5 h-full bg-gray-1 px-6 py-24 border border-gray-200 overflow-y-auto">
-            <div className="h-full">
-              {/* Professional Details Form */}
-              <form className="bg-white p-8 rounded-md">
-                <h2 className="text-2xl font-bold text-gray-700 mb-4">
-                  Professional Details
-                </h2>
+      {/* Clinic/Hospital Address */}
+      <div className="mb-6">
+  <label
+    htmlFor="clinicAddress"
+    className="block text-sm font-medium text-gray-700 mb-2"
+  >
+    Clinic/Hospital Address
+  </label>
+  <div className="border border-gray-300 p-4 rounded-md">
+    <p className="text-gray-400">{doctor?.clinic_address}</p>
+  </div>
+</div>
 
-                {/* Clinic/Hospital Address */}
-                <div className="mb-4">
-                  <label htmlFor="clinicAddress" className="block text-sm font-medium text-gray-700">
-                    Clinic/Hospital Address
-                  </label>
-                  <p className="text-gray-700">{doctor?.clinic_address}</p>
-                </div>
 
-                {/* Graduation Year */}
-                <div className="mb-4">
-                  <label htmlFor="graduationYear" className="block text-sm font-medium text-gray-700">
-                    Graduation Year
-                  </label>
-                  <p className="text-gray-700">{doctor?.graduation_year}</p>
-                </div>
-
-                {/* Medical License */}
-                <div className="mb-4">
-                  <label htmlFor="medicalLicense" className="block text-sm font-medium text-gray-700">
-                    Medical License
-                  </label>
-                  <p className="text-gray-700">{doctor?.medical_license}</p>
-                </div>
-
-                {/* University */}
-                <div className="mb-4">
-                  <label htmlFor="university" className="block text-sm font-medium text-gray-700">
-                    University
-                  </label>
-                  <p className="text-gray-700">{doctor?.university}</p>
-                </div>
-
-                <div className="mb-4">
-                  <label htmlFor="university" className="block text-sm font-medium text-gray-700">
-                    Certificates  
-                  </label>
-                  <p className="text-gray-700">{doctor?.certificate_image}</p>
-                </div>
-               
-              
-              </form>
-
-            </div>
-          </div>
+      {/* Graduation Year */}
+      <div className="mb-6">
+        <label
+          htmlFor="graduationYear"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
+          Graduation Year
+        </label>
+        <div className="border border-gray-300 p-4 rounded-md">
+        <p className="text-gray-400">{doctor?.graduation_year}</p>
         </div>
+      </div>
+
+      {/* Medical License */}
+      <div className="mb-6">
+        <label
+          htmlFor="medicalLicense"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
+          Medical License
+        </label>
+        <div className="border border-gray-300 p-4 rounded-md">
+        <p className="text-gray-400">{doctor?.medical_license}</p>
+        </div>
+       
+      </div>
+
+      {/* University */}
+      <div className="mb-6">
+        <label
+          htmlFor="university"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
+          University
+        </label>
+        <div className="border border-gray-300 p-4 rounded-md"> <p className="text-gray-400">{doctor?.university}</p>
+        </div>
+       
+      </div>
+    </form>
+  </div>
+</div>
+
       </div>
     </div>
   );
 }
+
 
 // Export component
 export default ProfessionalDetails;

@@ -5,9 +5,7 @@ import AuthContext from "../AuthContext/Authcontext";
 import axios from "axios";
 import { baseUrl } from "../const/urls";
 
-
 function ProfessionalEdit() {
-
   const [doctor, setDoctor] = useState(null);
   const { user } = useContext(AuthContext);
   const [certificates, setCertificates] = useState(null);
@@ -64,130 +62,130 @@ function ProfessionalEdit() {
     const selectedCertificates = Array.from(event.target.files).map(file => file.name);
     setCertificates(selectedCertificates);
   };
+
   return (
     <div>
-    <Nav />
-    <Sidebar />
-    <div className="flex flex-col overflow-hidden">
-      <form onSubmit={handleSubmit}>
-          <div className="flex overflow-hidden">
-            <div className="absolute right-0 top-0 w-4/5 h-full bg-gray-100 px-6 py-24 border border-gray-200 overflow-y-auto">
+      <Nav />
+      <Sidebar />
+      <div className="flex flex-col h-screen overflow-hidden">
+        <form onSubmit={handleSubmit}>
+          <div className="flex h-full overflow-hidden">
+            <div className="absolute right-0 top-10 w-4/5 h-3/4 bg-gray-100 px-6 py-12 border-l border-gray-200 overflow-y-auto">
               <div className="h-full">
-                <div className="bg-white shadow-md rounded px-8 pt-2 pb-4 mb-3 flex flex-col my-2">
-                  <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-                    <div className="mt-8 mb-12">
-                      <h2 className="text-3xl font-bold text-gray-700 tracking-wide leading-tight underline">
-                        EDIT PROFESSIONAL DETAILS
-                      </h2>
-                      {/* Certificates */}
-                      <div className="md:w-1/2 px-3">
-                        <label htmlFor="grid-certificates" className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                          Certificates
-                        </label>
-                        <input
-                          id="grid-certificates"
-                          type="file"
-                          name="certificates"
-                          multiple
-                          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                          onChange={handleFileUpload}
-                        />
-                        <p className="text-xs text-gray-500 mt-2">
-                          Select multiple PDF files for certificates (hold Ctrl/Cmd while selecting).
-                        </p>
-                        <p className="text-l bold text-gray-800 mt-2">
-                          Selected Certificates: {certificates && certificates.join(', ')}
-                        </p>
-                      </div>
-  
-                      {/* Address of Clinic/Hospital */}
-                      <div className="md:w-1/2 px-3">
-                        <label
-                          htmlFor="grid-clinic-address"
-                          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                        >
-                          Clinic/Hospital Address
-                        </label>
-                        <input
-                          id="grid-clinic-address"
-                          type="text"
-                          name="clinicAddress"
-                          defaultValue={doctor?.clinic_address}
-                          placeholder="Eg: 123 Main St, City, Country"
-                          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                        />
-                      </div>
-                    </div>
-  
-                    <div className="-mx-3 md:flex mb-2">
-                      {/* Graduation Year */}
-                      <div className="md:w-1/2 px-3">
-                        <label
-                          htmlFor="grid-graduation-year"
-                          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                        >
-                          Graduation Year
-                        </label>
-                        <input
-                          id="grid-graduation-year"
-                          type="text"
-                          name="graduationYear"
-                          defaultValue={doctor?.graduation_year}
-                          placeholder="Eg: 2005"
-                          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                        />
-                      </div>
-  
-                      {/* Medical License */}
-                      <div className="md:w-1/2 px-3">
-                        <label
-                          htmlFor="grid-medical-license"
-                          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                        >
-                          Medical License
-                        </label>
-                        <input
-                          id="grid-medical-license"
-                          type="text"
-                          name="medicalLicense"
-                          defaultValue={doctor?.medical_license}
-                          placeholder="Eg: XYZ12345"
-                          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                        />
-                      </div>
-                    </div>
-  
-                    <div className="md:w-1/2 px-3">
+                <div className="bg-white p-8 rounded-md shadow-md">
+                  <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                    Edit Professional Details
+                  </h2>
+
+                  <div className="mb-6 border border-gray-300 p-4 rounded-md">
+                    <label
+                      htmlFor="clinic-address"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Clinic/Hospital Address
+                    </label>
+                    <input
+                      id="clinic-address"
+                      type="text"
+                      name="clinicAddress"
+                      defaultValue={doctor?.clinic_address}
+                      placeholder="Eg: 123 Main St, City, Country"
+                      className="input-field-lg" // Larger input field styling
+                    />
+                  </div>
+
+                  <div className="mb-6 border border-gray-300 p-4 rounded-md">
+                    <div className="w-full md:w-1/2">
                       <label
-                        htmlFor="grid-medical-license"
-                        className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                        htmlFor="graduation-year"
+                        className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        University
+                        Graduation Year
                       </label>
                       <input
-                        id="grid-medical-license"
+                        id="graduation-year"
                         type="text"
-                        name="university"
-                        defaultValue={doctor?.university}
-                        placeholder="Eg: XYZ12345"
-                        className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                        name="graduationYear"
+                        defaultValue={doctor?.graduation_year}
+                        placeholder="Eg: 2005"
+                        className="input-field-lg" // Larger input field styling
                       />
                     </div>
-  
-                    <div className="flex items-center justify-center">
-                      <button
-                        className="btn bg-defaultBtnColor h-10 w-20 bg-blue-400 hover:bg-blue-500 text-white"
-                        type="submit"
-                      >
-                        EDIT
-                      </button>
-                    </div>
+                  </div>
+
+                  <div className="mb-6 border border-gray-300 p-4 rounded-md">
+                    <label
+                      htmlFor="medical-license"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Medical License
+                    </label>
+                    <input
+                      id="medical-license"
+                      type="text"
+                      name="medicalLicense"
+                      defaultValue={doctor?.medical_license}
+                      placeholder="Eg: XYZ12345"
+                      className="input-field-lg" // Larger input field styling
+                    />
+                  </div>
+
+                  <div className="mb-6 border border-gray-300 p-4 rounded-md">
+                    <label
+                      htmlFor="university"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      University
+                    </label>
+                    <input
+                      id="university"
+                      type="text"
+                      name="university"
+                      defaultValue={doctor?.university}
+                      placeholder="Eg: XYZ12345"
+                      className="input-field-lg" // Larger input field styling
+                    />
+                  </div>
+
+                  {/* <div className="mb-6 border border-gray-300 p-4 rounded-md">
+                    <label
+                      htmlFor="grid-certificates"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Certificates
+                    </label>
+                    <input
+                      id="grid-certificates"
+                      type="file"
+                      onChange={handleFileUpload}
+                      multiple
+                    />
+                   
+                    {certificates && (
+                      <div>
+                        <p>Selected Certificates:</p>
+                        <ul>
+                          {certificates.map((certificate, index) => (
+                            <li key={index}>{certificate}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div> */}
+
+                  <div className="flex items-center justify-center">
+                    <button
+                      className="btn bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full"
+                      type="submit"
+                    >
+                      EDIT
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          </form>
+        </form>
       </div>
     </div>
   );

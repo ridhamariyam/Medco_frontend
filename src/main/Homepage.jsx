@@ -21,27 +21,23 @@ const Homepage = () => {
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
-        <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">
-              Stay at Home. Consult Doctors Online.
-            </h1>
-            <p className="mb-5">
-              We Are Here to Hear and Heal Your Health Problems
-            </p>
+        <div className="max-w-md flex flex-col items-center justify-center h-screen">
+  <h1 className="mb-5 text-5xl font-bold">
+    Stay at Home. Consult Doctors Online.
+  </h1>
+  <p className="mb-5">
+    We Are Here to Hear and Heal Your Health Problems
+  </p>
+  <div className="mb-5 flex">
+  <a href="/Find_doctors" className="bg-blue-500 text-white p-2 rounded-r transform transition-transform duration-300 ease-in-out hover:scale-105">
+    Book Now
+  </a>
+</div>
 
-            <div className="mb-5 flex">
-              <input
-                type="text"
-                placeholder="Search for doctors..."
-                className="p-2 border border-gray-300 rounded-l w-full"
-              />
-              <button
-                className="bg-blue-500 text-white p-2 rounded-r"
-              >
-                Search
-              </button>
-            </div>
-          </div>
+
+
+</div>
+
 
         </div>
       </div>

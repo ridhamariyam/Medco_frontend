@@ -9,6 +9,7 @@ const AuthContext = createContext();
 
 export default AuthContext;
 export const AuthProvider = ({ children }) => {
+    console.log('base', baseUrl);
     const [doctor, setdoctor] = useState(() =>
         localStorage.getItem('authTokens')
             ? jwtDecode(localStorage.getItem('authTokens'))
