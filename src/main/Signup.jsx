@@ -70,7 +70,7 @@ function Signuppage_user(e) {
       console.log("oiuytrew");
       setLoading(true);
       const response = await axios.post(
-        `${baseUrl}/medcoapp/register/`,
+        `${baseUrl}/medcoapp/register`,
 
         formData
         
