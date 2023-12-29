@@ -186,7 +186,7 @@ return (
           <Route path="createroom" element={<CreateRoom />} />
 
           <Route path="Admin_dashboard" element={<PrivateRoute><Admin_dashboard /></PrivateRoute>} />
-          <Route path="admin_doctor" element={<PrivateRoute><Admin_doctor /></PrivateRoute>} />
+          <Route path="admin_doctor" element={<Admin_doctor />} />
           <Route path="AdminAppo" element={<AdminAppo />} />
           <Route path="Blockeddoctores" element={<Blockeddoctores />} />
           <Route path="Verified_Doctors" element={<Verified_doctor />} />
