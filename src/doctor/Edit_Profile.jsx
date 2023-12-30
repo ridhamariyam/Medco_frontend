@@ -9,6 +9,7 @@ function Edit_Profile() {
   const [doctor, setDoctor] = useState(null);
   const {user} = useContext(AuthContext)
   const [profile_image, setImage] = useState(null)
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const getDocDetail = () => {
     axios.get(`${baseUrl}/doctor/doctor_update/${user.user_id}`)
     
@@ -27,11 +28,11 @@ function Edit_Profile() {
   
 
   useEffect(() => {
-    getDocDetail()
+    getDocDetail();
   }, []);
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     let formData = new FormData();
     formData.append('first_name', e.target.first_name?.value);
     formData.append('last_name', e.target.last_name?.value);
@@ -40,21 +41,20 @@ function Edit_Profile() {
     formData.append('experiance', e.target.experience?.value);
     formData.append('language', e.target.language?.value);
     formData.append('bio', e.target.bio?.value);
-   
-    if (profile_image) {formData.append('profile_image', profile_image);}
-    axios.patch(`${baseUrl}/doctor/doctor_details/${doctor.id}`, formData).then((res)=>{
-      console.log('Server Response:', res);
-      console.log('--------',profile_image)
-      if (res.status == 200){
-        alert('updated')
+
+    if (profile_image) {
+      formData.append('profile_image', profile_image);
+    }
+
+    try {
+      const res = await axios.patch(`${baseUrl}/doctor/doctor_details/${doctor.id}`, formData);
+      if (res.status === 200) {
+        setShowSuccessMessage(true);
       }
-    })
-    
-    .catch((error) => {
+    } catch (error) {
       console.error('Error updating profile:', error);
-      
-    });
-  }
+    }
+  };
 
   return (
     <div>
@@ -237,15 +237,24 @@ function Edit_Profile() {
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
-                  <button className="btn bg-defaultBtnColor h-10 w-20 bg-blue-400 hover:bg-blue-500 text-white" type="submit">
-                    EDIT
-                  </button>
+                    <button className="btn bg-defaultBtnColor h-10 w-20 bg-blue-400 hover:bg-blue-500 text-white" type="submit">
+                      EDIT
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </form>
+
+        {/* Success Message */}
+        {showSuccessMessage && (
+        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-4 py-3 bg-green-400 text-white rounded-md shadow-md" role="alert">
+        <p class="font-bold">Profile updated successfully</p>
+        <p class="text-sm">Your changes have been saved.</p>
+    </div>
+    
+        )}
       </div>
     </div>
   );

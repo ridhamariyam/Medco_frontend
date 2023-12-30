@@ -9,7 +9,6 @@ import AuthContext from '../../AuthContext/Authcontext';
 function Chatcomponent() {
 
   const { username } = useParams();
-  console.log('paraaaaaaaaaaa',username )
   const [recipientdetails, setRecipientDetails] = useState({})
   const [senderdetails, setSenderDetails] = useState({});
   const [senderid, setSenderId] = useState(null);
@@ -21,18 +20,10 @@ function Chatcomponent() {
   const [docList, setdocList] = useState([]);
   
   const {user} = useContext(AuthContext)
-  console.log(user, 'dfffffffffffff')
   const messageRef = useRef()
 
   const navigate=useNavigate()
  
-
-  // useEffect(()=>{
-  //   return ()=>{
-  //     console.log('chat closing function')
-  //   }
-  // },[username, senderid, recipientid])
-
   const setUserProfileDetails = async () => {
     axios.get(`${baseUrl}/chat/getuserdetails/${username}`).then((response) => {
         if (response.status == 200) {
@@ -46,7 +37,6 @@ function Chatcomponent() {
 const setSenderProfile = async () => {
     axios.get(`${baseUrl}/chat/getuserdetails/${user.user_id}`).then((response) => {
         if (response.status == 200) {
-            console.log(response.data, 'ddddddddddddddddddddddddddd')
             setSenderDetails(response.data)
 
         }
@@ -61,7 +51,6 @@ const setList = async () => {
 
     axios.get(url).then((response) => {
         if (response.status == 200) {
-            console.log(response.data, 'ddddddddddddddddddddddddddd')
             setdocList(response.data)
 
         }
@@ -92,14 +81,13 @@ useEffect(()=>{
             setMessages(response.data)
         }
     }).catch((error) => {
-      console.error('Error:', error);
+     
     });
 
     const client = new W3CWebSocket(`${wsUrl}/ws/chat/${senderid}/?${recipientid}`);
-    console.log('jfdkjkdj');
     setClientState(client)
     client.onopen = () => {
-      console.log('WebSocket Client Connected');
+      
     };
 
     client.onmessage = (message) => {
@@ -119,7 +107,6 @@ useEffect(()=>{
     };
 
     client.onclose = () => {
-      console.log('Websocket disconnected');
     }
 
     return () => {
@@ -150,7 +137,6 @@ useEffect(()=>{
 
 
   useEffect(() => {
-    console.log('calling',senderid,recipientid)
     if (senderid != null && recipientid != null) {
     
       setUpChat()
@@ -177,12 +163,6 @@ useEffect(()=>{
     messageRef.current.value = ''
 
   };
-  // const chatContainerRef = useRef();
-  // useEffect(() => {
-  //   // Scroll to the bottom of the chat container
-  //   if(req.is_accepted || messages[0]?.sender_username === senderdetails.username){chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight}
-    
-  // });
   return (
     <div className="p-4 sm:ml-64 border">
       <div className="p-4 rounded-lg dark:border-yellow-700 mt-14">
@@ -223,16 +203,14 @@ useEffect(()=>{
               <div className="flex flex-col mt-8">
                 <div className="flex flex-row items-center justify-between text-xs">
                   <span className="font-bold">Active Conversations</span>
-                  <span className="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">
-                    4
-                  </span>
+                 
                 </div>
                 {docList?.map((list)=>{
                   return(
                   <div className="bg-white flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto" onClick={()=>navigate(`/Chat/${list.account.id}`)}>
-                  <button className="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
-                    <div className="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-                      H
+                  <button className="flex flex-row items-center hover:bg-blue-100 rounded-xl p-2">
+                    <div className="flex items-center justify-center h-3 w-3 bg-indigo-200 rounded-full">
+                      
                     </div>
                     <div className="ml-2 text-sm font-semibold">{list.account.first_name}</div>
                   </button>

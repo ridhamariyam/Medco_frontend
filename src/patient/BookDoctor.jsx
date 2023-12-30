@@ -253,11 +253,7 @@ function BookDoctor() {
           <div className="my-4 mx-auto max-w-2xl bg-white p-4 rounded-md text-center h-5 w- 100">
                <div className='flex bg-white shadow-md justify-start md:justify-center rounded-lg overflow-x-scroll mx-auto py-4 px-2 md:mx-12 h-3/4'>
                 
-                {successMessage && (
-                  <div className="bg-green-200 text-green-800 p-2 mt-2 rounded">
-                    {successMessage}
-                  </div>
-                )}
+               
                 {nextDays.map((day, index) => (
                   <div
                     key={index}
@@ -333,7 +329,12 @@ function BookDoctor() {
               <button className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition-all duration-300"onClick={bookSlot}>
                 Book Slot
               </button>
-             
+              {successMessage && (
+   <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 bg-green-500 text-white rounded-md shadow-md">
+   {successMessage}
+ </div>
+)}
+
             </div>
           </div>
         </div>
