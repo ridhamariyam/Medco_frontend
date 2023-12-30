@@ -37,11 +37,6 @@ function ProfessionalEdit() {
       formData.append('medical_license', e.target.medicalLicense.value);
       formData.append('university', e.target.university.value);
 
-      const certificatesInput = e.target.querySelector('#grid-certificates');
-      for (let i = 0; i < certificatesInput.files.length; i++) {
-        formData.append('certificates', certificatesInput.files[i]);
-      }
-
       const response = await axios.patch(
         `${baseUrl}/doctor/Professionaldetails/${user.user_id}/`,
         formData

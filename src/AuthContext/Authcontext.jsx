@@ -121,7 +121,7 @@ export const AuthProvider = ({ children }) => {
             // Handle network errors or other exceptions
             Swal.fire({
                 title: 'Login Failed',
-                text: 'Invalid credentials or account blocked.'+error,
+                text: 'Invalid credentials or account blocked.',
                 icon: 'error',
                 confirmButtonText: 'OK',
             });
