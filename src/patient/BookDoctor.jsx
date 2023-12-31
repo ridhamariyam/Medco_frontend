@@ -236,7 +236,7 @@ function BookDoctor() {
   
       <div className="flex px-4 bg-white h-screen">
         <div className="ml-32 border border-blue-300 p-4 shadow-md rounded-md mt-8 b-4 w-1/2 h-1/2 bg-white flex">
-          <img src={baseUrl + doctor?.doctor?.account?.profile_image} alt="" className="w-32 h-32 object-cover rounded-md mb-2" />
+          <img src={doctor?.doctor?.account?.profile_image} alt="" className="w-32 h-32 object-cover rounded-md mb-2" />
           <div className="ml-4">
             <h2 className="text-xl font-semibold mb-2">{doctor?.doctor?.account.first_name} {doctor?.doctor?.account.last_name}</h2>
             <p className="text-gray-700">{doctor?.doctor?.specialization}</p>
