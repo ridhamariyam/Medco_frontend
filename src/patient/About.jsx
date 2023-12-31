@@ -36,29 +36,29 @@ function About() {
         `${baseUrl}/patient/patient_details/${patient.id}`,
         {
           first_name: name,
-          age: age,
+          age,
           blood_group: bloodGroup,
           gender: capitalizeString(gender),
-          phone: phone,
+          phone,
         }
       );
 
       if (response.status === 200) {
         alert("Data updated successfully");
+
         // Update the patient data in the context
-        setPatient({
-          ...patient,
-          account: { ...patient.account, first_name: name, phone: phone },
+        setPatient((prevPatient) => ({
+          ...prevPatient,
+          account: { ...prevPatient.account, first_name: name, phone },
           age,
           blood_group: bloodGroup,
           gender,
-        });
+        }));
       }
     } catch (error) {
       console.error("Error updating patient data:", error);
     }
   };
-
   return (
     <>
       <NavBar />
