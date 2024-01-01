@@ -353,7 +353,7 @@ export default function DoctorView() {
                 />
               </div>
             </div>
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <h3 className="text-lg font-semibold mb-2">Uploaded Documents</h3>
               <ul>
 
@@ -363,10 +363,10 @@ export default function DoctorView() {
                   className="mt-2 h-20 w-20 object-cover rounded"
                 />
 
-                {/* You can add a button to view the document or any other actions */}
+              
 
               </ul>
-            </div>
+            </div> */}
 
 
 
