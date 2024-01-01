@@ -185,7 +185,7 @@ export default function DoctorView() {
               />
               <img
                 className="rounded-full h-40 w-40 object-cover m-4"
-                src={ doctor?.account.profile_image ? baseUrl + doctor?.account.profile_image : image}
+                src={ doctor?.account.profile_image}
                 alt="Doctor's Profile Image"
               />
             </label>
