@@ -25,7 +25,12 @@ const Header = () => {
 
       </ul>
     </div>
-    <img src="/image/logo.png" alt="" className="h-12 w-25 bg-white rounded-lg" />
+    <img
+  src="/image/logo.png"
+  alt=""
+  className="h-12 w-25 transition duration-300 ease-in-out"
+/>
+
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 text-black ">
@@ -53,15 +58,10 @@ const Header = () => {
   <div className="navbar-end">
     <Link to="/" className="btn bg-white text-black hover:bg-black hover:text-white">Book Free Appointement</Link>
   </div>
-
-  
-  
-
-
+ 
   <div className="navbar-end">
           {user ? (
-           
-
+          
             <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
