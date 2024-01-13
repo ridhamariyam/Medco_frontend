@@ -1,19 +1,16 @@
 import React, { useContext } from "react";
 import Header from "./header";
 import Footer from "./footer";
-import FeatureComponent from "./FeatureComponent"; // Assuming this component is defined in a separate file
 import { FaUserDoctor } from "react-icons/fa6";
 import AuthContext from "../AuthContext/Authcontext";
+import FeatureComponent from "./FeatureComponent";
 
 const Homepage = () => {
-  // Fetching user context using useContext
   const { user } = useContext(AuthContext);
 
   return (
     <>
       <Header />
-
-      {/* Hero Section */}
       <div
         className="hero h-50 "
         style={{ backgroundImage: "url('/image/bg.jpeg')" }}
@@ -38,49 +35,61 @@ const Homepage = () => {
           </div>
         </div>
       </div>
+      <br />
 
-      {/* Feature Section */}
-      <FeatureSection />
-
-      {/* Helpline Section */}
-      <div className="bg-cover bg-center w-screen md:h-96" style={{ backgroundImage: "url('/image/bgg.jpeg')" }}>
-        <div className="text-center p-8">
-          <br/><br/>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-teal-900 mt-4">24/7 Helpline Service</h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mt-4">
-            Our helpline service is available 24/7 to assist you.
-            <br />Feel free to reach out to us for any assistance or support you may need.
-          </p>
+      <section className="bg-white border-bold border-spacing-1 mt-4 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 px-4 overflow-x-auto">
+          {/* Only render the first feature initially */}
+          <FeatureComponent
+            title="Expert Doctors"
+            description="Our doctors are specialists in their respective fields, ensuring that you receive the highest level of care."
+          />
+          {/* Render the other features as the user scrolls horizontally */}
+          <FeatureComponent
+            title="Emergency Care"
+            description="Emergencies don't follow a schedule, and neither do we."
+          />
+          <FeatureComponent
+            title="24/7 Full Support"
+            description="Reliable 24/7 full support for seamless online doctor appointments"
+          />
         </div>
-      </div>
+      </section>
+
+      <br />
+      
+      <div className="bg-cover bg-center w-screen md:h-96" style={{ backgroundImage: "url('/image/bgg.jpeg')" }}>
+  <div className="text-center p-8">
+    <br/><br/>
+    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-teal-900 mt-4">24/7 Helpline Service</h1>
+    <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mt-4">
+      Our helpline service is available 24/7 to assist you.
+      <br />Feel free to reach out to us for any assistance or support you may need.
+    </p>
+  </div>
+</div>
+
+
 
       <Footer />
     </>
   );
 };
 
-// Feature Section Component
-const FeatureSection = () => (
-  <section className="bg-white border-bold border-spacing-1 mt-4 p-4 overflow-x-auto">
-    <div className="flex flex-no-wrap space-x-4 px-4">
-      {/* Features */}
-      <FeatureComponent
-        title="Expert Doctors"
-        description="Our doctors are specialists in their respective fields, ensuring that you receive the highest level of care."
-        Icon={FaUserDoctor}
-      />
-      <FeatureComponent
-        title="Emergency Care"
-        description="Emergencies don't follow a schedule, and neither do we."
-        Icon={FaUserDoctor} // Assuming you want the same icon for each feature
-      />
-      <FeatureComponent
-        title="24/7 Full Support"
-        description="Reliable 24/7 full support for seamless online doctor appointments"
-        Icon={FaUserDoctor} // Assuming you want the same icon for each feature
-      />
+const renderFeature = (title, description, Icon) => (
+  <div className="p-5 border-t lg:border-none xl:border-none">
+    <div className="p-5 flex">
+      <div className="bg-gray-400 my-auto p-5 rounded-full">
+        <Icon className="text-teal-900 text-4xl" />
+      </div>
+      <div className="ml-2 ">
+        <div className="p-2">
+          <h1 className="text-2xl font-sans text-teal-900 ">{title}</h1>
+          <p className="text-lg font-sans text-teal-900">{description}</p>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 );
 
 export default Homepage;
