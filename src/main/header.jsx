@@ -134,7 +134,9 @@ const Header = () => {
       <div>
         {user ? (
           <div className="dropdown dropdown-end">
-            {/* ... your existing user dropdown code */}
+            <button onClick={logoutuser} className="btn bg-white text-black hover:bg-black hover:text-white">
+        Logout
+      </button>
           </div>
         ) : (
           <Link
